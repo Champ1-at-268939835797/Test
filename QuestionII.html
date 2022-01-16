@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestionII</title>
+</head>
+
+<body>
+    <script>
+        let grid =
+            [
+                ["1", "1", "0", "0", "0"],
+                ["1", "1", "0", "0", "0"],
+                ["0", "0", "1", "0", "0"],
+                ["0", "0", "0", "1", "1"]
+            ]
+
+        let numIslands = function (grid) {
+            let numIsland = 0;
+
+            for (let i = 0; i < grid.length; i++) {
+                for (let j = 0; j < grid[0].length; j++) {
+                    if (grid[i][j] == '1') {
+                        dfs(grid, i, j);
+                        numIsland++;
+                    }
+                }
+            }
+            return numIsland;
+        };
+
+        let dfs = function (grid, i, j) {
+            if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0') {
+                return;
+            }
+            grid[i][j] = '0';
+            dfs(grid, i + 1, j);
+            dfs(grid, i - 1, j);
+            dfs(grid, i, j + 1);
+            dfs(grid, i, j - 1);
+        }
+
+        console.log(numIslands(grid));
+    </script>
+</body>
+
+</html>
